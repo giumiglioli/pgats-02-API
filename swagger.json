@@ -1,0 +1,115 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Transferências",
+    "version": "1.0.0",
+    "description": "API para login, registro, consulta de usuários e transferências."
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login de usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login realizado" },
+          "400": { "description": "Usuário ou senha inválidos" }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "Registro de usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["username", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Usuário registrado" },
+          "400": { "description": "Usuário já registrado" }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Consulta todos os usuários",
+        "responses": {
+          "200": { "description": "Lista de usuários" }
+        }
+      }
+    },
+    "/users/favorecido": {
+      "post": {
+        "summary": "Adiciona favorecido ao usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "favorecido": { "type": "string" }
+                },
+                "required": ["username", "favorecido"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Favorecido adicionado" },
+          "404": { "description": "Usuário não encontrado" }
+        }
+      }
+    },
+    "/transfer": {
+      "post": {
+        "summary": "Realiza transferência",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from": { "type": "string" },
+                  "to": { "type": "string" },
+                  "value": { "type": "number" }
+                },
+                "required": ["from", "to", "value"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Transferência realizada" },
+          "400": { "description": "Transferência não permitida" }
+        }
+      }
+    }
+  }
+}
