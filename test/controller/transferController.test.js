@@ -1,10 +1,11 @@
 //Bibliotecas
-const request = require('supertest');
-const sinon = require('sinon');
-const { expect } = require('chai');
+import request from 'supertest';
+import sinon from 'sinon';
+import chai from 'chai';
+const { expect } = chai;
 
 //Aplicação
-const app = require('../../app');
+import app from '../../app.js';
 
 // Testes
 describe('TransferController', () => {
